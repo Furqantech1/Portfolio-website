@@ -10,10 +10,14 @@ body {
 }
 
 .glass {
-    background: rgba(30, 41, 59, 0.6);
-    backdrop-filter: blur(10px);
+    background: rgba(30, 41, 59, 0.85); /* darker and more solid */
+    backdrop-filter: blur(20px) saturate(160%);
+    -webkit-backdrop-filter: blur(20px) saturate(160%);
     border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
 }
+
+
 
 .gradient-bg-hero {
     background-color: #0f172a;
@@ -169,9 +173,13 @@ body {
 }
 
 .light-mode .glass {
-    background: rgba(255, 255, 255, 0.6);
+    background: rgba(255, 255, 255, 0.75);
+    backdrop-filter: blur(20px) saturate(180%);
+    -webkit-backdrop-filter: blur(20px) saturate(180%);
     border: 1px solid rgba(0, 0, 0, 0.1);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
 }
+
 
 .light-mode .skill-progress {
     background: linear-gradient(90deg, #4f46e5, #7c3aed);
@@ -228,6 +236,19 @@ body {
     background: linear-gradient(45deg, #93c5fd, #c7d2fe, #fbcfe8);
 }
 
+/* Animation for Mobile Menu */
+#mobile-menu {
+    opacity: 0;
+    transform: translateY(-20px);
+    visibility: hidden;
+    transition: opacity 0.3s ease, transform 0.3s ease, visibility 0s 0.3s;
+}
 
+#mobile-menu.menu-open {
+    opacity: 1;
+    transform: translateY(0);
+    visibility: visible;
+    transition: opacity 0.3s ease, transform 0.3s ease, visibility 0s 0s;
+}
 
 
