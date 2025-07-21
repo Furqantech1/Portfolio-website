@@ -251,4 +251,15 @@ body {
     transition: opacity 0.3s ease, transform 0.3s ease, visibility 0s 0s;
 }
 
+@keyframes fadeSlide {
+  0% { opacity: 0; transform: translateY(-10px); }
+  50% { opacity: 1; transform: translateY(0); }
+  100% { opacity: 0; transform: translateY(10px); }
+}
 
+.animate-pulse {
+  animation: fadeSlide 4s ease-in-out;
+}
+/* =============================
+   END OF CUSTOM CSS
+   ============================= */

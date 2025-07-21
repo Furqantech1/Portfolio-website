@@ -7,7 +7,7 @@ document.addEventListener('DOMContentLoaded', () => {
         lucide.createIcons();
     }
 
-   // --- Mobile Menu Toggle ---
+    // --- Mobile Menu Toggle ---
     const mobileMenuButton = document.getElementById('mobile-menu-button');
     const mobileMenu = document.getElementById('mobile-menu');
 
@@ -105,3 +105,37 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 });
+
+document.addEventListener("DOMContentLoaded", function () {
+  const form = document.querySelector("form");
+  const success = document.getElementById("form-success");
+
+  if (form && success) {
+    form.addEventListener("submit", function (e) {
+      e.preventDefault();
+
+      fetch(form.action, {
+        method: "POST",
+        headers: {
+          Accept: "application/json",
+        },
+        body: new FormData(form),
+      })
+        .then((res) => {
+          if (res.ok) {
+            form.reset();
+            success.classList.remove("hidden");
+            setTimeout(() => success.classList.add("hidden"), 4000);
+          } else {
+            alert("❌ Submission failed. Try again.");
+          }
+        })
+        .catch((error) => {
+          console.error("Form submission error:", error);
+          alert("❌ Network error. Make sure the form action URL is correct.");
+        });
+    });
+  }
+});
+
+
