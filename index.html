@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Furqan Naikwadi - Web Developer</title>
+    <title>Furqan Naikwadi | Portfolio</title>
 
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
@@ -816,7 +816,23 @@ CONTACT SECTION
     ============================================
     -->
     <!-- External JS -->
+
+    <div id="command-palette-overlay" class="fixed inset-0 bg-slate-900/80 z-50 hidden backdrop-blur-sm">
+        <div id="command-palette" class="bg-slate-800 shadow-2xl rounded-xl max-w-xl mx-auto mt-[15vh] overflow-hidden">
+            <input type="text" id="command-input" placeholder="Type a command or search..."
+                class="w-full p-4 bg-transparent text-white focus:outline-none border-b border-slate-700">
+            <ul id="command-list" class="max-h-80 overflow-y-auto p-2">
+            </ul>
+        </div>
+    </div>
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+
+
     <script src="script.js"></script>
+
 
 </body>
 

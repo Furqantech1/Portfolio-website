@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Timeline Test</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <style>
+        /* --- Basic Styles from your project --- */
+        body {
+            background-color: #0f172a; /* gradient-bg-sections */
+            color: #d1d5db; /* A default text color */
+            font-family: 'Inter', sans-serif;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+        .container {
+            width: 100%;
+            margin-left: auto;
+            margin-right: auto;
+            padding-left: 1rem;
+            padding-right: 1rem;
+        }
+        @media (min-width: 640px) { .container { max-width: 640px; } }
+        @media (min-width: 768px) { .container { max-width: 768px; } }
+        @media (min-width: 1024px) { .container { max-width: 1024px; } }
+        @media (min-width: 1280px) { .container { max-width: 1280px; } }
+
+        .glass {
+            background: rgba(30, 41, 59, 0.85);
+            backdrop-filter: blur(20px) saturate(160%);
+            -webkit-backdrop-filter: blur(20px) saturate(160%);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+        }
+
+        /* --- TIMELINE-SPECIFIC CSS --- */
+        .timeline-container {
+            position: relative;
+            max-width: 56rem; /* 896px */
+            margin: 0 auto;
+            padding: 2rem 0;
+        }
+        .timeline-container::before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background-color: #334155;
+            transform: translateX(-50%);
+        }
+        .timeline-item {
+            position: relative;
+            width: 50%;
+            margin-bottom: 50px;
+            opacity: 0; /* Items start hidden */
+        }
+        .timeline-item::after {
+            content: '';
+            position: absolute;
+            top: 20px;
+            width: 16px;
+            height: 16px;
+            background-color: #4f46e5;
+            border: 3px solid #1e293b;
+            border-radius: 50%;
+            z-index: 1;
+        }
+        .timeline-item:nth-child(odd) {
+            left: 0;
+            padding-right: 50px;
+        }
+        .timeline-item:nth-child(odd)::after {
+            right: -8px;
+        }
+        .timeline-item:nth-child(even) {
+            left: 50%;
+            padding-left: 50px;
+        }
+        .timeline-item:nth-child(even)::after {
+            left: -8px;
+        }
+        .timeline-content {
+            position: relative;
+            padding: 1.5rem;
+            border-radius: 0.5rem;
+        }
+
+        /* --- Responsive styles for mobile --- */
+        @media screen and (max-width: 768px) {
+            .timeline-container::before {
+                left: 8px;
+            }
+            .timeline-item {
+                width: 100%;
+                padding-left: 50px;
+                padding-right: 0;
+                left: 0 !important;
+            }
+            .timeline-item::after {
+                left: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <section id="experience" style="padding-top: 5rem; padding-bottom: 5rem;">
+        <div class="container">
+            <div style="text-align: center; margin-bottom: 5rem;">
+                <h2 style="font-size: 2.25rem; font-weight: 700; color: white;">Work Experience</h2>
+                <p style="margin-top: 1rem; font-size: 1.125rem; color: #9ca3af;">My professional journey so far.</p>
+            </div>
+            
+            <div class="timeline-container">
+                <div class="timeline-item">
+                    <div class="timeline-content glass">
+                        <h3 style="font-size: 1.125rem; font-weight: 600; color: white;">Senior Web Developer</h3>
+                        <time style="font-size: 0.875rem; color: #9ca3af;">Jan 2023 - Present</time>
+                        <p style="font-size: 1rem; font-weight: 500; color: #818cf8; margin-bottom: 0.5rem;">Tech Solutions Inc.</p>
+                        <p style="font-size: 1rem; color: #d1d5db;">Leading the development of a new client-facing dashboard using React and TypeScript.</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-content glass">
+                        <h3 style="font-size: 1.125rem; font-weight: 600; color: white;">Mid-Level Developer</h3>
+                        <time style="font-size: 0.875rem; color: #9ca3af;">Jan 2020 - Dec 2022</time>
+                        <p style="font-size: 1rem; font-weight: 500; color: #818cf8; margin-bottom: 0.5rem;">Innovate Co.</p>
+                        <p style="font-size: 1rem; color: #d1d5db;">Developed and maintained several large-scale web applications.</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-content glass">
+                        <h3 style="font-size: 1.125rem; font-weight: 600; color: white;">Junior Developer</h3>
+                        <time style="font-size: 0.875rem; color: #9ca3af;">Jun 2018 - Dec 2019</time>
+                        <p style="font-size: 1rem; font-weight: 500; color: #818cf8; margin-bottom: 0.5rem;">Web Crafters</p>
+                        <p style="font-size: 1rem; color: #d1d5db;">Assisted in building responsive websites for various clients.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            console.log("DOM Loaded. Initializing GSAP...");
+            
+            // This line is crucial for GSAP's scroll features to work
+            gsap.registerPlugin(ScrollTrigger);
+
+            const timelineItems = document.querySelectorAll('.timeline-item');
+            console.log(`Found ${timelineItems.length} timeline items.`);
+
+            timelineItems.forEach((item, index) => {
+                // Determine animation direction based on odd/even index
+                const direction = index % 2 === 0 ? -1 : 1;
+                
+                // Set the initial position off-screen
+                gsap.set(item, { x: 100 * direction });
+
+                // Create the animation
+                gsap.to(item, {
+                    x: 0,
+                    opacity: 1,
+                    duration: 0.8,
+                    ease: "power2.out",
+                    scrollTrigger: {
+                        trigger: item,
+                        start: "top 85%",
+                        toggleActions: "play none none none", // Plays the animation once on enter
+                    }
+                });
+            });
+             console.log("GSAP animations set up successfully!");
+        });
+    </script>
+</body>
+</html>

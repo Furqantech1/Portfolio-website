@@ -260,6 +260,41 @@ body {
 .animate-pulse {
   animation: fadeSlide 4s ease-in-out;
 }
+
+/* =================================== */
+/* COMMAND PALETTE                  */
+/* =================================== */
+#command-palette-overlay {
+  transition: opacity 0.2s ease-in-out;
+}
+#command-palette {
+  transform: scale(0.95);
+  transition: transform 0.2s ease-in-out;
+}
+#command-palette-overlay:not(.hidden) #command-palette {
+    transform: scale(1);
+}
+.command-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.1s ease-in-out;
+}
+.command-item:hover, .command-item.selected {
+    background-color: #4f46e5; /* Indigo */
+    color: white;
+}
+.command-item i {
+    width: 20px;
+    height: 20px;
+}
+
+
+
+
 /* =============================
    END OF CUSTOM CSS
    ============================= */

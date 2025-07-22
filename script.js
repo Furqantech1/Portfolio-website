@@ -138,4 +138,74 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 });
 
+// ===================================
+//      COMMAND PALETTE
+// ===================================
+document.addEventListener('DOMContentLoaded', () => {
+    const paletteOverlay = document.getElementById('command-palette-overlay');
+    const input = document.getElementById('command-input');
+    const list = document.getElementById('command-list');
+
+    const commands = [
+        { name: 'Go to About', action: () => document.getElementById('about').scrollIntoView({ behavior: 'smooth' }), icon: 'user' },
+        { name: 'Go to Projects', action: () => document.getElementById('projects').scrollIntoView({ behavior: 'smooth' }), icon: 'folder-kanban' },
+        { name: 'Go to Skills', action: () => document.getElementById('skills').scrollIntoView({ behavior: 'smooth' }), icon: 'code' },
+        { name: 'Go to Experience', action: () => document.getElementById('experience').scrollIntoView({ behavior: 'smooth' }), icon: 'briefcase' },
+        { name: 'Go to Contact', action: () => document.getElementById('contact').scrollIntoView({ behavior: 'smooth' }), icon: 'mail' },
+        { name: 'View Resume', action: () => window.open('/resume.pdf', '_blank'), icon: 'download' },
+        { name: 'Toggle Theme', action: () => document.getElementById('theme-toggle').click(), icon: 'sun' }
+    ];
+
+    function renderCommands(filter = '') {
+        list.innerHTML = '';
+        const filteredCommands = commands.filter(cmd => cmd.name.toLowerCase().includes(filter.toLowerCase()));
+
+        filteredCommands.forEach(cmd => {
+            const item = document.createElement('li');
+            item.className = 'command-item text-white';
+            item.innerHTML = `<i data-lucide="${cmd.icon}"></i> ${cmd.name}`;
+            item.onclick = () => {
+                cmd.action();
+                closePalette();
+            };
+            list.appendChild(item);
+        });
+        if (window.lucide) lucide.createIcons();
+    }
+
+    function openPalette() {
+        paletteOverlay.classList.remove('hidden');
+        input.focus();
+        renderCommands();
+    }
+
+    function closePalette() {
+        paletteOverlay.classList.add('hidden');
+        input.value = '';
+    }
+
+    // Keyboard shortcut to open (Ctrl+K or Cmd+K)
+    window.addEventListener('keydown', (e) => {
+        if ((e.ctrlKey || e.metaKey) && e.key === 'k') {
+            e.preventDefault();
+            openPalette();
+        }
+        if (e.key === 'Escape' && !paletteOverlay.classList.contains('hidden')) {
+            closePalette();
+        }
+    });
+
+    // Close when clicking overlay
+    paletteOverlay.addEventListener('click', (e) => {
+        if (e.target === paletteOverlay) {
+            closePalette();
+        }
+    });
+
+    // Filter list on input
+    input.addEventListener('input', () => renderCommands(input.value));
+});
+
+
+
 
