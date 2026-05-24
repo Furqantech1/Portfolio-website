@@ -1,0 +1,271 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Geist+Mono:wght@400;500;600&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ========================================
+   Design System — CSS Custom Properties
+   ======================================== */
+
+:root {
+  /* Light Mode — Warm Cream Palette (Reference-inspired) */
+  --background: #FFFDF6;
+  --background-alt: #FFFFFF;
+  --surface: #FFFFFF;
+  --surface-alt: #FFF6EA;
+  --border-color: #EFE9DC;
+  --text-primary: #181721;
+  --text-secondary: #5E5B6B;
+  --text-muted: #938E9F;
+  --accent: #5E4AE3;
+  --accent-hover: #4A35CC;
+  --accent-light: #F3F0FF;
+  --accent-warm: #FED854;
+  --accent-warm-light: #FEF5D4;
+  --success: #059669;
+  --success-light: #D1FAE5;
+
+  /* Glassmorphism — Warm */
+  --glass-bg: rgba(255, 253, 246, 0.75);
+  --glass-border: rgba(239, 233, 220, 0.5);
+
+  /* Shadows — Warm tinted */
+  --shadow-sm: 0 1px 3px rgba(24, 23, 33, 0.04), 0 1px 2px rgba(24, 23, 33, 0.03);
+  --shadow-md: 0 4px 8px rgba(24, 23, 33, 0.06), 0 2px 12px rgba(24, 23, 33, 0.04);
+  --shadow-lg: 0 10px 20px rgba(24, 23, 33, 0.08), 0 4px 16px rgba(24, 23, 33, 0.06);
+  --shadow-xl: 0 20px 30px rgba(24, 23, 33, 0.10), 0 8px 24px rgba(24, 23, 33, 0.08);
+}
+
+.dark {
+  /* Dark Mode */
+  --background: #09090B;
+  --background-alt: #0F0F11;
+  --surface: #141414;
+  --surface-alt: #1A1A1A;
+  --border-color: #262626;
+  --text-primary: #FAFAFA;
+  --text-secondary: #A1A1AA;
+  --text-muted: #71717A;
+  --accent: #818CF8;
+  --accent-hover: #6366F1;
+  --accent-light: rgba(129, 140, 248, 0.1);
+  --accent-warm: #FBBF24;
+  --accent-warm-light: rgba(251, 191, 36, 0.1);
+  --success: #34D399;
+  --success-light: rgba(52, 211, 153, 0.1);
+
+  /* Glassmorphism Dark */
+  --glass-bg: rgba(20, 20, 20, 0.7);
+  --glass-border: rgba(255, 255, 255, 0.08);
+
+  /* Shadows Dark */
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.2), 0 1px 4px rgba(0, 0, 0, 0.2);
+  --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.3), 0 2px 12px rgba(0, 0, 0, 0.2);
+  --shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.3), 0 4px 20px rgba(0, 0, 0, 0.3);
+  --shadow-xl: 0 20px 25px rgba(0, 0, 0, 0.4), 0 8px 30px rgba(0, 0, 0, 0.3);
+}
+
+/* ========================================
+   Base Styles
+   ======================================== */
+
+@layer base {
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  body {
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    background-color: var(--background);
+    color: var(--text-primary);
+    transition: background-color 0.3s ease, color 0.3s ease;
+    overflow-x: hidden;
+    line-height: 1.6;
+  }
+
+  /* Theme transition on all color properties */
+  *, *::before, *::after {
+    transition-property: background-color, border-color, color, fill, stroke, box-shadow;
+    transition-duration: 0.3s;
+    transition-timing-function: ease;
+  }
+
+  /* Reset transition for animations (prevent conflicts with Framer Motion) */
+  [data-framer-component] *, .motion-element * {
+    transition-property: none;
+  }
+
+  ::selection {
+    background-color: var(--accent);
+    color: white;
+  }
+
+  /* Scrollbar */
+  ::-webkit-scrollbar {
+    width: 6px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: var(--background);
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: var(--border-color);
+    border-radius: 3px;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: var(--text-muted);
+  }
+}
+
+/* ========================================
+   Component Utilities
+   ======================================== */
+
+@layer components {
+  /* Glass Card */
+  .glass-card {
+    background: var(--glass-bg);
+    backdrop-filter: blur(24px);
+    -webkit-backdrop-filter: blur(24px);
+    border: 1px solid var(--glass-border);
+  }
+
+  /* Section Container */
+  .section-container {
+    @apply max-w-6xl mx-auto px-4 sm:px-6 lg:px-8;
+  }
+
+  /* Section Padding */
+  .section-padding {
+    @apply py-20 md:py-28 lg:py-32;
+  }
+
+  /* Alternating Section Background —
+     Sections with .section-alt get white bg in light mode,
+     creating visual rhythm against the warm cream default */
+  .section-alt {
+    background-color: var(--background-alt);
+  }
+
+  /* Accent Bar (small decorative line above section headings) */
+  .accent-bar {
+    @apply w-12 h-1 rounded-full mb-4;
+    background-color: var(--accent);
+  }
+
+  /* Section Heading */
+  .section-heading {
+    @apply text-3xl md:text-4xl font-bold tracking-tight;
+    color: var(--text-primary);
+  }
+
+  /* Section Subtitle */
+  .section-subtitle {
+    @apply text-base md:text-lg mt-3;
+    color: var(--text-secondary);
+  }
+
+  /* Dot Grid Background */
+  .dot-grid {
+    background-image: radial-gradient(circle, var(--border-color) 1px, transparent 1px);
+    background-size: 32px 32px;
+  }
+
+  /* Tech Pill Badge */
+  .tech-pill {
+    @apply inline-flex items-center px-3 py-1.5 rounded-lg text-sm font-medium transition-all duration-300;
+    background-color: var(--surface-alt);
+    color: var(--text-secondary);
+  }
+
+  .tech-pill:hover {
+    color: var(--accent);
+    border-color: var(--accent);
+  }
+
+  /* Card Base — white cards on cream = visual depth */
+  .card-base {
+    @apply rounded-2xl border transition-all duration-300;
+    background-color: var(--surface);
+    border-color: var(--border-color);
+    box-shadow: var(--shadow-sm);
+  }
+
+  .card-base:hover {
+    box-shadow: var(--shadow-md);
+    border-color: rgba(79, 70, 229, 0.2);
+  }
+
+  .dark .card-base:hover {
+    border-color: rgba(129, 140, 248, 0.2);
+  }
+
+  /* Magnetic Button Base */
+  .btn-primary {
+    @apply inline-flex items-center justify-center gap-2 px-6 py-3 rounded-xl font-semibold text-white transition-all duration-300;
+    background-color: var(--accent);
+  }
+
+  .btn-primary:hover {
+    background-color: var(--accent-hover);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-lg);
+  }
+
+  .btn-outline {
+    @apply inline-flex items-center justify-center gap-2 px-6 py-3 rounded-xl font-semibold border-2 transition-all duration-300;
+    color: var(--accent);
+    border-color: var(--accent);
+  }
+
+  .btn-outline:hover {
+    background-color: var(--accent);
+    color: white;
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-lg);
+  }
+
+  .btn-ghost {
+    @apply inline-flex items-center justify-center gap-2 px-6 py-3 rounded-xl font-semibold transition-all duration-300;
+    background-color: var(--surface-alt);
+    color: var(--text-primary);
+  }
+
+  .btn-ghost:hover {
+    background-color: var(--border-color);
+    transform: translateY(-2px);
+  }
+
+  /* Warm Footer Accent (inspired by reference yellow footer band) */
+  .footer-accent {
+    background: linear-gradient(to bottom, var(--background), var(--accent-warm-light));
+  }
+}
+
+/* ========================================
+   Reduced Motion
+   ======================================== */
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+
+  html {
+    scroll-behavior: auto;
+  }
+}
