@@ -20,7 +20,7 @@ const techBadges = [
 ];
 
 const socialLinks = [
-  { icon: Github, href: 'hhttps://github.com/Furqantech1', label: 'GitHub' },
+  { icon: Github, href: 'https://github.com/Furqantech1', label: 'GitHub' },
   { icon: Linkedin, href: 'https://www.linkedin.com/in/furqan-naikwadi-7860f', label: 'LinkedIn' },
   { icon: Mail, href: 'mailto:furqannaikwadi61@gmail.com', label: 'Email' },
 ];
